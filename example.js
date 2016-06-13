@@ -1,43 +1,99 @@
 var targetValue; 
-		
-	var sel = document.getElementById("my_select");
+var sel = document.getElementById("my_select");
+
 sel.onchange = function() {
 	targetValue = 'http://brinq.tv/api/v2/localization?lang=' + sel.value;
 };
 	
-$.getJSON('http://brinq.tv/api/v2/localization?lang=ru', function(data){
-	var items = [];
-
-  items.push('<h2 id="">' + data.lang + '</h2>');
-  items.push('<p id="">' + data.description + '</p>');
- 
-$('<ul/>', {
-    'class': 'my-new-list',
-    html: items.join('')
-  }).appendTo("#mydiv");
-});
-	
-	
 $(function() {
     $('#my_select').on('change', function() {
 		
-		mydiv.innerHTML = '';
-		
 $.getJSON(targetValue, function(data){
-	var items = [];
-	items.push('<h2 id="">' + data.lang + '</h2>');
-	items.push('<p id="">' + data.description + '</p>');
-  
-$('<ul/>', {
-    'class': 'my-new-list',
-    html: items.join('')
-  }).appendTo("#mydiv");
-});
-    })
+		
+	var values = [];
+	
+$.each(data, function(key, val){ 	
+	values.push(val);
+	console.log(data.lang);
 });
 
+	// // var div = document.getElementById("test");
+	// // var spans = div.getElementsByTagName("span");
+
+	var elems = $('[data-lang-translate="true"');
+	$.each(elems, function(index, item){
+		var keyName = $(this).attr('data-lang-name');
+		var elem = $(this);
+		
+		$.each(data, function(key, val){
+			if(key === keyName)
+			{
+				// TODO: check elem tag (type) and set text or val 
+				
+				elem.val(val);
+				elem.text(val);
+				//elem.innerHTML = val;
+			}
+		});
+	});
+	
+	// for(i=0;i<spans.length;i++){
+		
+	// if(spans[i].getAttribute('data-lang-translate') == 'true')
+	// {
+		// var keyName = spans[i].getAttribute('data-lang-name');
+		// $.each(data, function(key, val){
+			// if(key==keyName)
+			// {
+				// spans[i].innerHTML = val;
+			// }
+		// });
+	// }
+	// }
+//console.log(spans);
+
+	
+
+});});});
 
 
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
